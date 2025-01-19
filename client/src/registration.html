@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration</title>
+  </head>
+  <body>
+    <!-- header -->
+    <header class="header">
+      <div class="container-xxl">
+        <div
+          class="header-wrapper mt-5 d-flex justify-content-between align-items-center"
+        >
+          <div class="header-logo">
+            <p class="header-logo__title fs-2" class="fs-1">VTCT</p>
+          </div>
+          <div class="header-authorization">
+            <a
+              href="./authorization.html"
+              class="header-authorization__link text-decoration-none"
+              >Авторизация</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- main -->
+    <main class="main">
+      <div class="container-xxl">
+        <div class="main-wrapper">
+          <form id="register"
+            class="main-form form d-flex flex-column justify-content-center">
+            <div class="form-item mb-3">
+              <label
+                for="username"
+                class="form-item__label col-sm-2 col-form-label"
+                >Username</label
+              >
+              <div class="form-input col">
+                <input
+                  type="text"
+                  class="form-input__item form-control"
+                  id="username"
+                  name="username"
+                />
+              </div>
+            </div>
+
+            <div class="form-item mb-3">
+              <label
+                for="email"
+                class="form-item__label col-sm-2 col-form-label"
+                >Эл. почта</label
+              >
+              <div class="form-input col">
+                <input
+                  type="email"
+                  class="form-input__item form-control"
+                  id="email"
+                  name="email"
+                />
+              </div>
+            </div>
+
+            <div class="form-item mb-3">
+              <label
+                for="password"
+                class="form-item__label col-sm-2 col-form-label"
+                >Пароль</label
+              >
+              <div class="form-input col">
+                <input
+                  type="password"
+                  class="form-input__item form-control"
+                  id="password"
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="form-btn__item btn btn-primary">
+              Зарегистрироваться
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <!-- footer -->
+    <footer
+      class="footer-registration border-1 border-black border-top border-opacity-25"
+    >
+      <div class="container-xxl">
+        <div class="footer-wrapper">
+          <div class="footer-text">
+            <p class="footer-text__item opacity-50 mt-3 text-center">
+              Copyright © 2025 vtct.uz. Designed by All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
