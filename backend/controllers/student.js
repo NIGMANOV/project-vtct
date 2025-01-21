@@ -2,11 +2,19 @@ const Student = require("../models/Students");
 
 class StudentsController {
   async create(req, res) {
-    const { email, gender, name, lastname, fathername } = req.body;
-    const { roles } = req.user;
-    if (!roles || roles !== "superadmin") {
-      return res.status(403).json({ message: "Forbidden resourse" });
-    }
+    const {
+      email,
+      gender,
+      name,
+      lastname,
+      fathername,
+      passportSeria,
+      passportNumber,
+    } = req.body;
+    // const { roles } = req.user;
+    // if (!roles || roles !== "superadmin") {
+    //   return res.status(403).json({ message: "Forbidden resourse" });
+    // }
     try {
       const candidate = await Student.findOne({ email: email });
       console.log(candidate);
@@ -15,12 +23,22 @@ class StudentsController {
         return res.status(400).json({ message: "Почту нельзя использовать" });
       }
 
+      const candidatePassport = await Student.findOne({
+        passportNumber: passportNumber,
+      });
+
+      if(candidatePassport){
+        return res.status(400).json({ message: "Этот номер паспорта уже есть в базе данных" });
+      }
+
       const studentData = {
         email: email,
         gender: gender,
         name: name,
         lastname: lastname,
         fathername: fathername,
+        passportSeria: passportSeria,
+        passportNumber: passportNumber,
       };
 
       const student = await Student.create(studentData);
@@ -55,8 +73,10 @@ class StudentsController {
 
     try {
       const totalCount = await Student.countDocuments(searchOptions);
-      const offset = (page - 1) * limit
-      const students = await Student.find(searchOptions).skip(offset).limit(limit || 5);
+      const offset = (page - 1) * limit;
+      const students = await Student.find(searchOptions)
+        .skip(offset)
+        .limit(limit || 5);
 
       const result = {
         data: students,

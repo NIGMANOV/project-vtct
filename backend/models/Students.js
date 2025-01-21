@@ -23,6 +23,16 @@ const studentsSchema = new Schema({
     type: String,
     enum: ["male", "female"],
   },
+  passportSeria: {
+    type: String,
+    required: [true, 'passportSeria не должен быть пустой'],
+    unique: true,
+  },
+  passportNumber: {
+    type: String,
+    required: [true, 'passportNumber не должнен быть пустой'],
+    unique: true,
+  }
 });
 
 const Student = mongoose.model("students", studentsSchema);

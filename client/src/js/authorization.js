@@ -16,7 +16,7 @@ export default function initAuthorization() {
         const result = await response.json();
         if (response.ok) {
           alert("Logged in successfully");
-          window.location.href = "../dist/index.html";
+          window.location.href = "./index.html";
         } else {
           alert("Error: " + result.message);
         }

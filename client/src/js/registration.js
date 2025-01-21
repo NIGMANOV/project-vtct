@@ -2,8 +2,6 @@ export default function initRegistration() {
   const registerForm = document.getElementById("register");
   if (registerForm) {
     registerForm.addEventListener("submit", async (e) => {
-
-
       e.preventDefault();
       const fullname = document.getElementById("username").value;
       const email = document.getElementById("email").value;
@@ -21,7 +19,7 @@ export default function initRegistration() {
         const result = await response.json();
         if (response.ok) {
           alert(result.message);
-          window.location.href = "../dist/authorization.html";
+          window.location.href = "./authorization.html";
         } else {
           alert("Error: " + result.message);
         }
