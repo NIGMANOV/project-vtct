@@ -7,7 +7,7 @@ export default function initAuthorization() {
       const password = document.getElementById("password").value;
 
       try {
-        const response = await fetch("http://localhost:5500/api/users/login", {
+        const response = await fetch("http://localhost:5550/api/users/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),
@@ -18,7 +18,7 @@ export default function initAuthorization() {
           alert("Logged in successfully");
           const userToken = localStorage.setItem('key', result.jwt)
           console.log(userToken);
-          window.location.href = "./index.html";
+          window.location.href = "./addstudents.html";
         } else {
           alert("Error: " + result.message);
         }

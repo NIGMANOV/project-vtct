@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Addstudents</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container-xxl">
+        <div
+          class="header-wrapper mt-5 d-flex justify-content-between align-items-center"
+        >
+          <div class="header-logo">
+            <p class="header-logo__title fs-2" class="fs-1">VTCT</p>
+          </div>
+
+          <button id="header__btn" class="btn btn-primary">Выйти</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main main-addstudents">
+      <div class="container-xxl">
+        <div class="main-wrapper">
+          <form id="add-students" action="" class="d-flex flex-column gap-2">
+            <label for="email">Email</label>
+            <input class="" type="email" id="email" />
+            <label for="" name>Name</label>
+            <input class="" type="text" id="name" />
+            <label for="lastname">Lastname</label>
+            <input class="" type="text" id="lastname" />
+            <label for="fathername">Fathername</label>
+            <input class="" type="text" id="fathername" />
+            <label for="passportSeria">PassportSeria</label>
+            <input class="" type="text" id="passportSeria" />
+            <label for="passportNumber">PassportNumber</label>
+            <input class="" type="text" id="passportNumber" />
+            <div class="d-flex gap-2 align-items-center">
+              <label for="male">male</label>
+              <input
+                class="gender"
+                type="checkbox"
+                id="male"
+                name="gender"
+                value="male"
+              />
+              <label for="female">female</label>
+              <input
+                class="gender"
+                type="checkbox"
+                id="female"
+                name="gender"
+                value="female"
+              />
+            </div>
+            <button class="btn btn-primary" type="submit">Отправить</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

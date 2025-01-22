@@ -25,8 +25,8 @@ module.exports = {
       filename: "registration.html",
     }),
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      filename: "index.html",
+      template: "./src/addstudents.html",
+      filename: "addstudents.html",
     }),
     new miniCssExtractPlugin(),
   ],

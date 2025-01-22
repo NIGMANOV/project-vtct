@@ -8,7 +8,7 @@ export default function initRegistration() {
       const password = document.getElementById("password").value;
   
       try {
-        const response = await fetch("http://localhost:5500/api/users", {
+        const response = await fetch("http://localhost:5550/api/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

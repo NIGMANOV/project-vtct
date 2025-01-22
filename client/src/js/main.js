@@ -7,25 +7,26 @@ import addStudents from "./addstudents";
 
 const checkAuth = async (token) => {
   try {
-    const response = await fetch("http://localhost:5500/api/users/me", {
+    const response = await fetch("http://localhost:5550/api/users/me", {
       method: "GET",
-      headers: {"Authorization" : `Bearer ${token}`},
+      headers: { Authorization: `Bearer ${token}` },
     });
-    
+
     const result = await response.json();
 
-    if(response.status !== 200 && window.location.href === 'http://127.0.0.1:5501/client/dist/index.html'){
-      window.location.href = './authorization.html'
+    if (
+      response.status !== 200 &&
+      window.location.href === "http://127.0.0.1:5500/client/dist/addstudents.html"
+    ) {
+      window.location.href = "./authorization.html";
     }
   } catch (error) {}
 };
 
-
 document.addEventListener("DOMContentLoaded", () => {
-
   const isLogged = localStorage.getItem("key");
 
-  checkAuth(isLogged)
+  checkAuth(isLogged);
 
   if (isLogged) {
     btnExit();

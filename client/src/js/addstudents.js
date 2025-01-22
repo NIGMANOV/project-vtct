@@ -15,7 +15,7 @@ export default function addStudents() {
         const gender = genderElement ? genderElement.value : null;
   
         try {
-          const response = await fetch("http://localhost:5500/api/students", {
+          const response = await fetch("http://localhost:5550/api/students", {
             method: "POST",
             headers: { 
               "Content-Type": "application/json", 
