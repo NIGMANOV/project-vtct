@@ -13,9 +13,7 @@ class UserController {
     try {
       const candidate = await User.findOne({ email: email });
       if (candidate) {
-        return res
-          .status(400)
-          .json({ message: "Почту нельзя использовать" });
+        return res.status(400).json({ message: "Почту нельзя использовать" });
       }
       const hashPassword = await bcrypt.hash(password, saltRounds);
 
@@ -44,9 +42,7 @@ class UserController {
     try {
       const candidate = await User.findOne({ email: email });
       if (!candidate) {
-        return res
-          .status(400)
-          .json({ message: "Почта или пароль не верны" });
+        return res.status(400).json({ message: "Почта или пароль не верны" });
       }
       const checkPass = await bcrypt.compare(password, candidate.password);
 
@@ -58,6 +54,21 @@ class UserController {
         process.env.JWT_SECRET
       );
       res.status(200).json({ message: "ok", jwt: token });
+    } catch (error) {}
+  }
+
+  async getMe(req, res) {
+    try {
+      const { id } = req.user;
+      const user = await User.findById(id);
+
+      if (!user) {
+        return res
+          .status(400)
+          .json({ message: "Такого пользователя не существует" });
+      }
+
+      return res.status(200).json({ message: "ok", user });
     } catch (error) {}
   }
 }

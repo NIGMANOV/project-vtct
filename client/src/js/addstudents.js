@@ -17,7 +17,10 @@ export default function addStudents() {
         try {
           const response = await fetch("http://localhost:5500/api/students", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+              "Content-Type": "application/json", 
+              'Authorization' : 'Beror ' + localStorage.getItem('key') 
+            },
             body: JSON.stringify({ email, name, lastname, fathername, gender, passportNumber, passportSeria }),
           });
   

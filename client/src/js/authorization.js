@@ -16,6 +16,8 @@ export default function initAuthorization() {
         const result = await response.json();
         if (response.ok) {
           alert("Logged in successfully");
+          const userToken = localStorage.setItem('key', result.jwt)
+          console.log(userToken);
           window.location.href = "./index.html";
         } else {
           alert("Error: " + result.message);

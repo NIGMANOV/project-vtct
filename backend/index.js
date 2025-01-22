@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors({
   origin: ['http://localhost:5500', 'http://127.0.0.1:5501'], // Укажи адрес фронтенда
   methods: ['GET', 'POST'],         // Разрешённые методы
-  allowedHeaders: ['Content-Type'], // Разрешённые заголовки
+  allowedHeaders: ['Content-Type', 'Authorization'], // Разрешённые заголовки
 }))
 
 app.use("/api/students", studentsRouter);
