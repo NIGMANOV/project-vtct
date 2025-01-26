@@ -8,6 +8,9 @@ export default function addStudents() {
         const name = document.getElementById("name").value;
         const lastname = document.getElementById("lastname").value;
         const fathername = document.getElementById("fathername").value;
+        const phoneNumber = document.getElementById("phoneNumber").value;
+        const dateofBirth = document.getElementById("dateofBirth").value;
+        const territory = document.getElementById("territory").value;
         const passportSeria = document.getElementById("passportSeria").value;
         const passportNumber = document.getElementById("passportNumber").value;
   
@@ -21,7 +24,7 @@ export default function addStudents() {
               "Content-Type": "application/json", 
               'Authorization' : 'Beror ' + localStorage.getItem('key') 
             },
-            body: JSON.stringify({ email, name, lastname, fathername, gender, passportNumber, passportSeria }),
+            body: JSON.stringify({ email, name, lastname, fathername, gender, passportNumber, passportSeria, phoneNumber, territory, dateofBirth }),
           });
   
           const result = await response.json();

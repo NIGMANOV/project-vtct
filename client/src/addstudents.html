@@ -6,6 +6,7 @@
     <title>Addstudents</title>
   </head>
   <body>
+    <!-- header -->
     <header class="header">
       <div class="container-xxl">
         <div
@@ -15,27 +16,41 @@
             <p class="header-logo__title fs-2" class="fs-1">VTCT</p>
           </div>
 
-          <button id="header__btn" class="btn btn-primary">Выйти</button>
+          <div class="header-addstudents d-flex align-items-center gap-4">
+            <a
+              href="./searchStudents.html"
+              class="header-addstudents__link text-decoration-none"
+              >Перейти к участникам</a
+            >
+
+            <button id="header__btn" class="btn btn-primary">Выйти</button>
+          </div>
         </div>
       </div>
     </header>
-
+    <!-- main -->
     <main class="main main-addstudents">
       <div class="container-xxl">
         <div class="main-wrapper">
           <form id="add-students" action="" class="d-flex flex-column gap-2">
-            <label for="email">Email</label>
-            <input class="" type="email" id="email" />
-            <label for="" name>Name</label>
-            <input class="" type="text" id="name" />
+            <label for="name" name>Name</label>
+            <input class="form-control" type="text" id="name" />
             <label for="lastname">Lastname</label>
-            <input class="" type="text" id="lastname" />
+            <input class="form-control" type="text" id="lastname" />
             <label for="fathername">Fathername</label>
-            <input class="" type="text" id="fathername" />
-            <label for="passportSeria">PassportSeria</label>
-            <input class="" type="text" id="passportSeria" />
-            <label for="passportNumber">PassportNumber</label>
-            <input class="" type="text" id="passportNumber" />
+            <input class="form-control" type="text" id="fathername" />
+            <label for="phoneNumber">phone Number</label>
+            <input class="form-control" type="text" id="phoneNumber" />
+            <label for="dateofBirth">Date of Birth</label>
+            <input class="form-control" type="date" id="dateofBirth" />
+            <label for="email">Email</label>
+            <input class="form-control" type="email" id="email" />
+            <label for="territory">Territory</label>
+            <input class="form-control" type="text" id="territory" />
+            <label for="passportSeria">Passport Seria</label>
+            <input class="form-control" type="text" id="passportSeria" />
+            <label for="passportNumber">Passport Number</label>
+            <input class="form-control" type="text" id="passportNumber" />
             <div class="d-flex gap-2 align-items-center">
               <label for="male">male</label>
               <input

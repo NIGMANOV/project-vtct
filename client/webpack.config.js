@@ -28,6 +28,10 @@ module.exports = {
       template: "./src/addstudents.html",
       filename: "addstudents.html",
     }),
+    new HtmlWebpackPlugin({
+      template: "./src/searchStudents.html",
+      filename: "searchStudents.html",
+    }),
     new miniCssExtractPlugin(),
   ],
   module: {

@@ -10,6 +10,9 @@ class StudentsController {
       fathername,
       passportSeria,
       passportNumber,
+      phoneNumber,
+      dateofBirth,
+      territory,
     } = req.body;
     // const { roles } = req.user;
     // if (!roles || roles !== "superadmin") {
@@ -27,8 +30,10 @@ class StudentsController {
         passportNumber: passportNumber,
       });
 
-      if(candidatePassport){
-        return res.status(400).json({ message: "Этот номер паспорта уже есть в базе данных" });
+      if (candidatePassport) {
+        return res
+          .status(400)
+          .json({ message: "Этот номер паспорта уже есть в базе данных" });
       }
 
       const studentData = {
@@ -39,6 +44,9 @@ class StudentsController {
         fathername: fathername,
         passportSeria: passportSeria,
         passportNumber: passportNumber,
+        phoneNumber: phoneNumber,
+        dateofBirth: dateofBirth,
+        territory: territory,
       };
 
       const student = await Student.create(studentData);
@@ -89,6 +97,36 @@ class StudentsController {
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: error.message });
+    }
+  }
+
+  async getAll(req, res) {
+    try {
+      const { limit, page } = req.query;
+      const offset = (page - 1) * limit;
+      const totalCount = await Student.countDocuments()
+      const students = await Student.find().sort({lastname: 'asc', test: -1}).skip(offset).limit(limit || 10)
+      const result = {
+        data: students,
+        count: students.length,
+        totalCount: totalCount,
+        limit: limit,
+        page: page,
+      }
+      res.status(200).json(result);
+    } catch (error) {
+      console.error("Ошибка при получении данных");
+      res.status(500).json({ error: error.message, message: "Ошибка сервера" });
+    }
+  }
+
+  async deleteStudents(req, res){
+    try {
+      const students = await Student.findOne({"_id": ObjectId("678f9eb374d4d9a1bf588c0f")}).deleteOne()
+      res.status(200).json(students);
+    } catch (error) {
+      console.error("Ошибка при получении данных");
+      res.status(500).json({ error: error.message, message: "Ошибка сервера" });
     }
   }
 }

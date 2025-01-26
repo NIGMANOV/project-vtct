@@ -4,19 +4,19 @@ const { Schema } = mongoose;
 const studentsSchema = new Schema({
   name: {
     type: String,
-    required: [true, 'name не должен быть пустым'],
+    required: [true, "name не должен быть пустым"],
   },
   lastname: {
     type: String,
-    required: true,
+    required: [true, "lastname не должен быть пустым"],
   },
   fathername: {
     type: String,
-    required: true,
+    required: [true, "fathername не должен быть пустым"],
   },
   phoneNumber: {
-    type: Number,
-    required: [true, 'phoneNumber не должен быть пустым'],
+    type: String,
+    required: [true, "phone Number не должен быть пустым"],
   },
   gender: {
     type: String,
@@ -24,7 +24,7 @@ const studentsSchema = new Schema({
   },
   dateofBirth: {
     type: String,
-    required: [true, 'dateofBirth не должен быть пустым'],
+    required: [true, "Date of Birth не должен быть пустым"],
   },
   email: {
     type: String,
@@ -32,23 +32,18 @@ const studentsSchema = new Schema({
   },
   territory: {
     type: String,
-    required: [true, 'territory не должен быть пустым'],
-  },  
-  lesson: {
-    type: String,
-    required: [true, 'lesson не должен быть пустым'],
+    required: [true, "Territory не должен быть пустым"],
   },
   passportSeria: {
     type: String,
-    required: [true, 'passportSeria не должен быть пустой'],
+    required: [true, "passport Seria не должен быть пустой"],
     unique: true,
   },
   passportNumber: {
     type: Number,
-    required: [true, 'passportNumber не должнен быть пустой'],
+    required: [true, "passport Number не должнен быть пустой"],
     unique: true,
   },
-  
 });
 
 const Student = mongoose.model("students", studentsSchema);

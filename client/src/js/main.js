@@ -4,6 +4,7 @@ import initRegistration from "./registration";
 import initAuthorization from "./authorization";
 import btnExit from "./btnexit";
 import addStudents from "./addstudents";
+import searchStudents from "./searchStudents"
 
 const checkAuth = async (token) => {
   try {
@@ -16,7 +17,7 @@ const checkAuth = async (token) => {
 
     if (
       response.status !== 200 &&
-      window.location.href === "http://127.0.0.1:5500/client/dist/addstudents.html"
+      window.location.href === "http://127.0.0.1:5501/client/dist/searchStudents.html"
     ) {
       window.location.href = "./authorization.html";
     }
@@ -31,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (isLogged) {
     btnExit();
     addStudents();
+    searchStudents()
   }
 
   initRegistration();

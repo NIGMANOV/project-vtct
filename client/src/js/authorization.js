@@ -18,7 +18,7 @@ export default function initAuthorization() {
           alert("Logged in successfully");
           const userToken = localStorage.setItem('key', result.jwt)
           console.log(userToken);
-          window.location.href = "./addstudents.html";
+          window.location.href = "./searchStudents.html";
         } else {
           alert("Error: " + result.message);
         }
