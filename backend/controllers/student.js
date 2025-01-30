@@ -13,6 +13,7 @@ class StudentsController {
       phoneNumber,
       dateofBirth,
       territory,
+      selectDirections,
     } = req.body;
     // const { roles } = req.user;
     // if (!roles || roles !== "superadmin") {
@@ -47,6 +48,7 @@ class StudentsController {
         phoneNumber: phoneNumber,
         dateofBirth: dateofBirth,
         territory: territory,
+        selectDirections: selectDirections,
       };
 
       const student = await Student.create(studentData);
@@ -60,7 +62,12 @@ class StudentsController {
   }
 
   async search(req, res) {
+
+    
+
     const { email, name, limit, page } = req.query;
+    console.log(req.query);
+    
 
     const orConditions = [];
 
@@ -84,7 +91,7 @@ class StudentsController {
       const offset = (page - 1) * limit;
       const students = await Student.find(searchOptions)
         .skip(offset)
-        .limit(limit || 5);
+        .limit(limit || 10);
 
       const result = {
         data: students,

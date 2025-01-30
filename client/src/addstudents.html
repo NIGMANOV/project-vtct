@@ -32,47 +32,127 @@
     <main class="main main-addstudents">
       <div class="container-xxl">
         <div class="main-wrapper">
-          <form id="add-students" action="" class="d-flex flex-column gap-2">
-            <label for="name" name>Name</label>
-            <input class="form-control" type="text" id="name" />
-            <label for="lastname">Lastname</label>
-            <input class="form-control" type="text" id="lastname" />
-            <label for="fathername">Fathername</label>
-            <input class="form-control" type="text" id="fathername" />
-            <label for="phoneNumber">phone Number</label>
-            <input class="form-control" type="text" id="phoneNumber" />
-            <label for="dateofBirth">Date of Birth</label>
-            <input class="form-control" type="date" id="dateofBirth" />
-            <label for="email">Email</label>
-            <input class="form-control" type="email" id="email" />
-            <label for="territory">Territory</label>
-            <input class="form-control" type="text" id="territory" />
-            <label for="passportSeria">Passport Seria</label>
-            <input class="form-control" type="text" id="passportSeria" />
-            <label for="passportNumber">Passport Number</label>
-            <input class="form-control" type="text" id="passportNumber" />
-            <div class="d-flex gap-2 align-items-center">
-              <label for="male">male</label>
-              <input
-                class="gender"
-                type="checkbox"
-                id="male"
-                name="gender"
-                value="male"
-              />
-              <label for="female">female</label>
-              <input
-                class="gender"
-                type="checkbox"
-                id="female"
-                name="gender"
-                value="female"
-              />
+          <form id="add-students" action="" class="">
+            <div class="row mt-4">
+              <div class="col">
+                <label for="name" name>Name</label>
+                <input class="form-control" type="text" id="name" />
+              </div>
+              <div class="col">
+                <label for="lastname">Lastname</label>
+                <input class="form-control" type="text" id="lastname" />
+              </div>
+              <div class="col">
+                <label for="fathername">Fathername</label>
+                <input class="form-control" type="text" id="fathername" />
+              </div>
             </div>
-            <button class="btn btn-primary" type="submit">Отправить</button>
+
+            <div class="row mt-4">
+              <div class="col">
+                <label for="dateofBirth">Date of Birth</label>
+                <input class="form-control" type="date" id="dateofBirth" />
+              </div>
+              <div class="col">
+                <label for="passportSeria">Passport Seria</label>
+                <input class="form-control" type="text" id="passportSeria" />
+              </div>
+              <div class="col">
+                <label for="passportNumber">Passport Number</label>
+                <input class="form-control" type="text" id="passportNumber" />
+              </div>
+            </div>
+
+            <div class="row mt-4">
+              <div class="col">
+                <label for="phoneNumber">phone Number</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  id="phoneNumber"
+                  placeholder="+998 (XX) XXX - XX - XX"
+                  pattern="^\+998\s?\(?\d{2}\)?\s?\d{3}[-\s]?\d{2}[-\s]?\d{2}$"
+                />
+              </div>
+              <div class="col">
+                <label for="email">Email</label>
+                <input class="form-control" type="email" id="email" />
+              </div>
+            </div>
+
+            <div class="row mt-4">
+              <div class="col">
+                <div class="form-floating">
+                  <select
+                    class="form-select"
+                    id="select-directions"
+                    name="selectDirections"
+                  >
+                    <option selected>Open this select menu</option>
+                    <option value="Axborot texnologiyalari">
+                      Axborot texnologiyalari
+                    </option>
+                    <option
+                      value="Avtomobillarga texnik hizmat ko'rsatish va ta'mirlash"
+                    >
+                      Avtomobillarga texnik hizmat ko'rsatish va ta'mirlash
+                    </option>
+                    <option
+                      value="Elektronika, Elektrotexnika va avtomatlashtirish"
+                    >
+                      Elektronika, Elektrotexnika va avtomatlashtirish
+                    </option>
+                    <option
+                      value=" Mashinasozlik ishlab chiqarish texnologiyalari"
+                    >
+                      Mashinasozlik ishlab chiqarish texnologiyalari
+                    </option>
+                    <option value="Payvandlash ishlari mexanik texnigi">
+                      Payvandlash ishlari mexanik texnigi
+                    </option>
+                  </select>
+                  <label for="select-directions">Choose directions</label>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="form-floating">
+                  <select class="form-select" id="gender" name="gender">
+                    <option selected>Open this select menu</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                  <label for="select-directions">Сhoose a gender</label>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col">
+                <label for="territory">Territory</label>
+                <input class="form-control" type="text" id="territory" />
+              </div>
+            </div>
+
+            <div class="row mt-4">
+              <div class="col">
+                <button class="btn btn-primary" type="submit">Отправить</button>
+              </div>
+            </div>
           </form>
         </div>
       </div>
     </main>
+    <!-- footer -->
+    <footer class="footer bg-primary">
+      <div class="container-xxl">
+        <div class="footer-wrapper">
+          <div class="footer-text">
+            <p class="footer-text__item mt-3 text-center">
+              Copyright © 2025 vtct.uz. Designed by All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

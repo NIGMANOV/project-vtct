@@ -20,7 +20,7 @@ const studentsSchema = new Schema({
   },
   gender: {
     type: String,
-    enum: ["male", "female"],
+    enum: ["Male", "Female"],
   },
   dateofBirth: {
     type: String,
@@ -37,12 +37,15 @@ const studentsSchema = new Schema({
   passportSeria: {
     type: String,
     required: [true, "passport Seria не должен быть пустой"],
-    unique: true,
   },
   passportNumber: {
     type: Number,
     required: [true, "passport Number не должнен быть пустой"],
     unique: true,
+  },
+  selectDirections: {
+    type: String,
+    required: [true, "select Directions не должнен быть пустой"],
   },
 });
 

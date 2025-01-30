@@ -1,7 +1,10 @@
 export default async function fetchData(page = 1) {
   try {
     const response = await fetch(
-      `http://localhost:5550/api/students/getAll?page=${page}&limit=9`
+      `http://localhost:5550/api/students/getAll?page=${page}&limit=9`,
+      {
+        headers: { Authorization: `Bearer ${localStorage.getItem("key")}` },
+      }
     );
     const data = await response.json();
     return data;
@@ -9,6 +12,8 @@ export default async function fetchData(page = 1) {
     console.error("Ошибка при получении данных");
   }
 }
+
+export { displayStudents, displayPagination };
 
 function displayStudents(students = []) {
   const pageItem = document.getElementById("page-item");
