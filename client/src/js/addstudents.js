@@ -13,6 +13,7 @@ export default function addStudents() {
         const territory = document.getElementById("territory").value;
         const passportSeria = document.getElementById("passportSeria").value;
         const passportNumber = document.getElementById("passportNumber").value;
+        const fileField = document.getElementById("avatar");
 
   
         const genderElement = document.querySelector('select[name="gender"]');
@@ -24,13 +25,21 @@ export default function addStudents() {
         const selectDirections = selectedOption ? selectedOption.value : null;
         
         try {
+          const formData = new FormData()
+          const body = { email, name, lastname, fathername, gender, passportNumber, passportSeria, phoneNumber, territory, dateofBirth, selectDirections }
+          for (const key in body) {
+            formData.append(key, body[key])
+          }
+          formData.append('avatar', fileField.files[0]);
+
+          console.log(formData);
+          
           const response = await fetch("http://localhost:5550/api/students", {
             method: "POST",
             headers: { 
-              "Content-Type": "application/json", 
               'Authorization' : 'Beror ' + localStorage.getItem('key') 
             },
-            body: JSON.stringify({ email, name, lastname, fathername, gender, passportNumber, passportSeria, phoneNumber, territory, dateofBirth, selectDirections }),
+            body: formData,
           });
   
           const result = await response.json();

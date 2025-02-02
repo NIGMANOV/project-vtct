@@ -13,32 +13,92 @@ export default async function fetchData(page = 1) {
   }
 }
 
-export { displayStudents, displayPagination };
-
 function displayStudents(students = []) {
   const pageItem = document.getElementById("page-item");
   if (pageItem) {
     pageItem.innerHTML = ``;
 
-    students.forEach((student) => {
-      const itemDiv = document.createElement("div");
-      itemDiv.innerHTML = `                
-            <div class="col">
+    students.forEach((student, index) => {
+      console.log(student, index);
+
+      let itemHtml = `                
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                 <div class="card h-100">
-                    <img src="https://avatars.mds.yandex.net/get-ydo/472106/2a00000174a0bab24e919b669269cf3e4838/diploma" class="card-img-top" alt="...">
+                    <img  src="${
+                      student.avatar
+                        ? `http://localhost:5550/uploads/${student.avatar}`
+                        : "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/1200px-Placeholder_no_text.svg.png"
+                    }" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">${student.lastname} ${student.name} ${student.fathername}</h5>
-                      <p class="card-text"><span class="text-bg-primary rounded-1 p-1">Date of Birth</span> ${student.dateofBirth}</p>
-                      <p class="card-text"><span class="text-bg-primary rounded-1 p-1">Gender:</span> ${student.gender}</p>
-                      <p class="card-text"><span class="text-bg-primary rounded-1 p-1">Territory:</span> ${student.territory}</p>
-                      <p class="card-text"><span class="text-bg-primary rounded-1 p-1">Phone Number:</span> ${student.phoneNumber}</p>
-                      <p class="card-text"><span class="text-bg-primary rounded-1 p-1">Email:</span> ${student.email}</p>
-                      <p class="card-text"><span class="text-bg-primary rounded-1 p-1">Passport Seria:</span> ${student.passportSeria}</p>
-                      <p class="card-text"><span class="text-bg-primary rounded-1 p-1">Passport Number:</span> ${student.passportNumber}</p>
+                      <h5 class="card-title">${student.lastname} ${
+        student.name
+      } ${student.fathername}</h5>
+                      <p class="card-text"><span class="text-bg-primary rounded-1 p-1">Date of Birth</span> ${
+                        student.dateofBirth
+                      }</p>
+                      <p class="card-text"><span class="text-bg-primary rounded-1 p-1">Gender:</span> ${
+                        student.gender
+                      }</p>
+                      <p class="card-text"><span class="text-bg-primary rounded-1 p-1">Territory:</span> ${
+                        student.territory
+                      }</p>
+                      <p class="card-text"><span class="text-bg-primary rounded-1 p-1">Phone Number:</span> ${
+                        student.phoneNumber
+                      }</p>
+                      <p class="card-text"><span class="text-bg-primary rounded-1 p-1">Email:</span> ${
+                        student.email
+                      }</p>
+                      <p class="card-text"><span class="text-bg-primary rounded-1 p-1">Passport Seria:</span> ${
+                        student.passportSeria
+                      }</p>
+                      <p class="card-text"><span class="text-bg-primary rounded-1 p-1">Passport Number:</span> ${
+                        student.passportNumber
+                      }</p>
                     </div>
                 <div>
             </div>`;
-      pageItem.appendChild(itemDiv);
+
+      if (index < 3) {
+        itemHtml = `                
+            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                <div class="card h-100">
+                    <img  src="${
+                      student.avatar
+                        ? `http://localhost:5550/uploads/${student.avatar}`
+                        : "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/1200px-Placeholder_no_text.svg.png"
+                    }" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">${student.lastname} ${
+          student.name
+        } ${student.fathername}</h5>
+                      <p class="card-text"><span class="text-bg-info rounded-1 p-1">Date of Birth</span> ${
+                        student.dateofBirth
+                      }</p>
+                      <p class="card-text"><span class="text-bg-info rounded-1 p-1">Gender:</span> ${
+                        student.gender
+                      }</p>
+                      <p class="card-text"><span class="text-bg-info rounded-1 p-1">Territory:</span> ${
+                        student.territory
+                      }</p>
+                      <p class="card-text"><span class="text-bg-info rounded-1 p-1">Phone Number:</span> ${
+                        student.phoneNumber
+                      }</p>
+                      <p class="card-text"><span class="text-bg-info rounded-1 p-1">Email:</span> ${
+                        student.email
+                      }</p>
+                      <p class="card-text"><span class="text-bg-primary rounded-1 p-1">Passport Seria:</span> ${
+                        student.passportSeria
+                      }</p>
+                      <p class="card-text"><span class="text-bg-primary rounded-1 p-1">Passport Number:</span> ${
+                        student.passportNumber
+                      }</p>
+                    </div>
+                <div>
+            </div>
+            `;
+      }
+
+      pageItem.insertAdjacentHTML("beforeend", itemHtml);
     });
   }
 }
@@ -98,3 +158,5 @@ async function displayData(page = 1) {
 }
 
 displayData();
+
+export { displayStudents, displayPagination };

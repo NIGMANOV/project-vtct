@@ -14,6 +14,7 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'], // Разрешённые заголовки
 }))
 
+app.use("/uploads", express.static(__dirname + '/uploads'));
 app.use("/api/students", studentsRouter);
 app.use("/api/users", usersRouter);
 

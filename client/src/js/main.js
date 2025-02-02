@@ -6,6 +6,7 @@ import btnExit from "./btnexit";
 import addStudents from "./addstudents";
 import searchStudents from "./searchStudents"
 import search from "./search"
+import getExcel from './excel'
 
 const checkAuth = async (token) => {
   try {
@@ -35,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     addStudents();
     searchStudents()
     search()
+    getExcel()
   }
 
   initRegistration();
