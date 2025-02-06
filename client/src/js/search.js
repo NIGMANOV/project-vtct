@@ -2,11 +2,11 @@ import { displayStudents } from "./searchStudents";
 
 export default async function search() {
   try {
-    const inputElement = document.getElementById("search-input");
+    const inputElement = document.querySelectorAll("#search-input");
 
-    const searchStudents = async (value) => {
+    const searchStudents = async (value, name) => {
       const response = await fetch(
-        `http://localhost:5550/api/students/search?&email=${value.trim()}`,
+        `http://localhost:5550/api/students/search?&${name}=${value}`,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("key")}` },
         }
@@ -16,23 +16,26 @@ export default async function search() {
       return result;
     };
 
-    inputElement.addEventListener("input", async (e) => {
-      const { target } = e;
-      const { value } = target;
+    inputElement.forEach((item) => {
+      item.addEventListener('input', async (e) => {
+        const {target} = e
+        const {value} = target
+        const {name} = target
+        
+        const result = await searchStudents(value, name);
 
-      const result = await searchStudents(value);
-
-      const pageItem = document.getElementById("page-item");
-
-      if (!pageItem) {
-        return;
-      }
-
-      pageItem.innerHTML = ``;
-
-      if (result && result.data) {
-        displayStudents(result.data);
-      }
-    });
+        const pageItem = document.getElementById("page-item");
+  
+        if (!pageItem) {
+          return;
+        }
+  
+        pageItem.innerHTML = ``;
+  
+        if (result && result.data) {
+          displayStudents(result.data);
+        }
+      })
+    })
   } catch (error) {}
 }

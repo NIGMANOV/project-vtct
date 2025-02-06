@@ -39,7 +39,7 @@ const studentsSchema = new Schema({
     required: [true, "passport Seria не должен быть пустой"],
   },
   passportNumber: {
-    type: Number,
+    type: String,
     required: [true, "passport Number не должнен быть пустой"],
     unique: true,
   },

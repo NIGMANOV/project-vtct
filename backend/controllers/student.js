@@ -70,19 +70,26 @@ class StudentsController {
   }
 
   async search(req, res) {
-    const { email, name, limit, page } = req.query;
+    const { name, selectDirections, passportNumber, limit, page } = req.query;
     console.log(req.query);
 
     const orConditions = [];
 
-    if (email) {
-      orConditions.push({
-        email: { $regex: `.*${email}.*`, $options: "i" },
-      });
-    }
     if (name) {
       orConditions.push({
         name: { $regex: `.*${name}.*`, $options: "i" },
+      });
+    }
+
+    if (selectDirections) {
+      orConditions.push({
+        selectDirections: { $regex: `.*${selectDirections}.*`, $options: "i" },
+      });
+    }
+
+    if (passportNumber) {
+      orConditions.push({
+        passportNumber: { $regex: `.*${passportNumber}.*`, $options: "i" },
       });
     }
 

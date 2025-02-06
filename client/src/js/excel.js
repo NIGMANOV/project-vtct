@@ -2,7 +2,6 @@ export default function getExcel() {
   const btnExcel = document.getElementById("btn-excel");
 
   if (!btnExcel) {
-    console.error("Кнопка btn-excel не найдена");
     return;
   }
 
