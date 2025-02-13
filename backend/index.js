@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(cors({
   origin: ['http://localhost:5550', 'http://127.0.0.1:5500'], // Укажи адрес фронтенда
-  methods: ['GET', 'POST'],         // Разрешённые методы
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],         // Разрешённые методы
   allowedHeaders: ['Content-Type', 'Authorization'], // Разрешённые заголовки
 }))
 

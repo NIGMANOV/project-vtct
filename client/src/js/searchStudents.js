@@ -22,74 +22,110 @@ function displayStudents(students = []) {
       console.log(student, index);
 
       let itemHtml = `
-       <div class="col-12">
-                <div class="row border border-opacity-25 border-black rounded p-3 align-items-center mt-3">
-                    <div class="col d-flex justify-content-center">
-                        <img class="border border-opacity-25 border-black rounded" 
-                             src="${student.avatar ? `http://localhost:5550/uploads/${student.avatar}` : 'https://www.healthdirect.gov.au/assets/images/gender-male.png'}" 
-                             alt="Profile Image">
-                    </div>
-                    <div class="col d-flex justify-content-center flex-column text-center">
-                        <p><strong>FIO:</strong> ${student.name} ${student.lastname} ${student.fathername}</p>
-                        <p><strong>Gender:</strong> ${student.gender} </p>
-                    </div>
-                    <div class="col d-flex justify-content-center flex-column text-center">
-                        <p><strong>Passport Seria:</strong> ${student.passportSeria} </p>
-                        <p><strong>Passport Number:</strong> ${student.passportNumber} </p>
-                    </div>
-                    <div class="col d-flex justify-content-center flex-column text-center">
-                        <p><strong>Territory:</strong> ${student.territory} </p>
-                        <p><strong>Choose Directions:</strong> ${student.selectDirections} </p>
-                    </div>
-                    <div class="col d-flex justify-content-center flex-column text-center">
-                        <p><strong>Phone Number:</strong> ${student.phoneNumber} </p>
-                        <p><strong>Email:</strong> ${student.email} </p>
-                    </div>
-                </div>
-            </div>`
-
-      // if (index < 3) {
-      //   itemHtml = `                
-      //       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
-      //           <div class="card h-100">
-      //               <img  src="${
-      //                 student.avatar
-      //                   ? `http://localhost:5550/uploads/${student.avatar}`
-      //                   : "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/1200px-Placeholder_no_text.svg.png"
-      //               }" class="card-img-top" alt="...">
-      //               <div class="card-body">
-      //                 <h5 class="card-title">${student.lastname} ${
-      //     student.name
-      //   } ${student.fathername}</h5>
-      //                 <p class="card-text"><span class="text-bg-info rounded-1 p-1">Date of Birth</span> ${
-      //                   student.dateofBirth
-      //                 }</p>
-      //                 <p class="card-text"><span class="text-bg-info rounded-1 p-1">Gender:</span> ${
-      //                   student.gender
-      //                 }</p>
-      //                 <p class="card-text"><span class="text-bg-info rounded-1 p-1">Territory:</span> ${
-      //                   student.territory
-      //                 }</p>
-      //                 <p class="card-text"><span class="text-bg-info rounded-1 p-1">Phone Number:</span> ${
-      //                   student.phoneNumber
-      //                 }</p>
-      //                 <p class="card-text"><span class="text-bg-info rounded-1 p-1">Email:</span> ${
-      //                   student.email
-      //                 }</p>
-      //                 <p class="card-text"><span class="text-bg-primary rounded-1 p-1">Passport Seria:</span> ${
-      //                   student.passportSeria
-      //                 }</p>
-      //                 <p class="card-text"><span class="text-bg-primary rounded-1 p-1">Passport Number:</span> ${
-      //                   student.passportNumber
-      //                 }</p>
-      //               </div>
-      //           <div>
-      //       </div>
-      //       `;
-      // }
-
+        <div class="col-12">
+          <div class="row border border-opacity-25 border-black rounded p-3 align-items-center mt-3 d-flex">
+            <!-- Profile Image -->
+            <div class="col-auto d-flex align-items-center">
+              <img
+                class="border border-opacity-25 border-black rounded img-fluid"
+                src="${
+                  student.avatar
+                    ? `http://localhost:5550/uploads/${student.avatar}`
+                    : "https://www.healthdirect.gov.au/assets/images/gender-male.png"
+                }"
+                alt="Profile picture"
+              />
+            </div>
+    
+            <!-- Personal Information -->
+            <div class="col d-flex flex-column align-items-start">
+              <p><strong>Full Name:</strong> ${student.lastname} ${
+        student.name
+      } ${student.fathername} </p>
+              <p><strong>Gender:</strong> ${student.gender} </p>
+              <p><strong>Territory:</strong> ${student.territory} </p>
+            </div>
+    
+            <!-- Passport Information -->
+            <div class="col d-flex flex-column align-items-start">
+              <p><strong>Chosen Direction:</strong> ${
+                student.selectDirections
+              } </p>
+              <p><strong>Passport Series:</strong> ${student.passportSeria} </p>
+              <p><strong>Passport Number:</strong> ${
+                student.passportNumber
+              } </p>
+            </div>
+    
+            <!-- Contact Information -->
+            <div class="col d-flex flex-column align-items-start">
+              <p><strong>Phone Number:</strong> ${student.phoneNumber} </p>
+              <p><strong>Email:</strong> ${student.email} </p>
+              <p><strong>Status:</strong> ${student.status} </p>
+            </div>
+            
+            <!-- Buttons -->
+            <div class="col-2 d-flex flex-column gap-2">
+              <button class="btn btn-primary update-status" data-id="${
+                student._id
+              }" value="Graduated">Graduated</button>
+              <button class="btn btn-success update-status" data-id="${
+                student._id
+              }" value="Studies">Studies</button>
+              <button class="btn btn-danger update-status" data-id="${
+                student._id
+              }" value="Expelled">Expelled</button>
+            </div>
+          </div>
+        </div>
+      `;
       pageItem.insertAdjacentHTML("beforeend", itemHtml);
     });
+
+    async function updateStatus() {
+      try {
+        const buttons = document.querySelectorAll(".update-status");
+
+        const update = async (id, newStatus) => {
+          const response = await fetch(
+            `http://localhost:5550/api/students/${id}/status`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("key")}`,
+              },
+              body: JSON.stringify({ status: newStatus }),
+            }
+          );
+
+          const result = await response.json();
+          console.log("Ответ сервера:", result);
+
+          location.reload();
+        };
+
+        if (buttons.length > 0) {
+          buttons.forEach((btn) => {
+            btn.addEventListener("click", async (e) => {
+              const id = e.target.dataset.id; 
+              const newStatus = e.target.value; 
+
+              if (id && newStatus) {
+                await update(id, newStatus); 
+              } else {
+                console.error(
+                  "Ошибка: Не хватает данных для обновления статуса"
+                );
+              }
+            });
+          });
+        }
+      } catch (error) {
+        console.error("Ошибка:", error);
+      }
+    }
+    updateStatus();
   }
 }
 

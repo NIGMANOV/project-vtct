@@ -70,7 +70,7 @@ class StudentsController {
   }
 
   async search(req, res) {
-    const { name, selectDirections, passportNumber, limit, page } = req.query;
+    const { name, lastname, fathername, selectDirections, passportNumber, limit, page } = req.query;
     console.log(req.query);
 
     const orConditions = [];
@@ -78,6 +78,18 @@ class StudentsController {
     if (name) {
       orConditions.push({
         name: { $regex: `.*${name}.*`, $options: "i" },
+      });
+    }
+
+    if (lastname) {
+      orConditions.push({
+        lastname: { $regex: `.*${lastname}.*`, $options: "i" },
+      });
+    }
+
+    if (fathername) {
+      orConditions.push({
+        fathername: { $regex: `.*${fathername}.*`, $options: "i" },
       });
     }
 
@@ -120,10 +132,21 @@ class StudentsController {
 
   async getAll(req, res) {
     try {
-      const { limit, page } = req.query;
+      const { limit, page, status } = req.query;
       const offset = (page - 1) * limit;
-      const totalCount = await Student.countDocuments();
-      const students = await Student.find()
+      let filterParams = {}
+
+      if(status === 'Studies' || status === 'Expelled' || status === 'Graduated'){
+        filterParams.status = status
+      } else {
+        delete filterParams.status
+      }
+
+      const totalCount = await Student.countDocuments(filterParams);
+      const studiesTotalCount = await Student.countDocuments({status: 'Studies'});
+      const expelledTotalCount = await Student.countDocuments({status: 'Expelled'});
+      const graduatedTotalCount = await Student.countDocuments({status: 'Graduated'});
+      const students = await Student.find(filterParams)
         .sort({ lastname: "asc", test: -1 })
         .skip(offset)
         .limit(limit || 10);
@@ -133,6 +156,9 @@ class StudentsController {
         totalCount: totalCount,
         limit: limit,
         page: page,
+        studiesTotalCount: studiesTotalCount,
+        expelledTotalCount: expelledTotalCount,
+        graduatedTotalCount: graduatedTotalCount,
       };
       res.status(200).json(result);
     } catch (error) {
@@ -150,6 +176,27 @@ class StudentsController {
     } catch (error) {
       console.error("Ошибка при получении данных");
       res.status(500).json({ error: error.message, message: "Ошибка сервера" });
+    }
+  }
+
+  async updateStatus(req, res) {
+    try {
+      const { id } = req.params;
+      const { status } = req.body;
+  
+      const updatedStudent = await Student.findByIdAndUpdate(
+        id,
+        { status },
+        { new: true }
+      );
+  
+      if (!updatedStudent) {
+        return res.status(404).json({ message: "Студент не найден" });
+      }
+  
+      res.json({ message: "Статус обновлен", student: updatedStudent });
+    } catch (error) {
+      res.status(500).json({ message: "Ошибка сервера", error });
     }
   }
 

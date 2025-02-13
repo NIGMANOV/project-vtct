@@ -12,7 +12,6 @@ export default async function search() {
         }
       );
       const result = await response.json();
-      console.log(result);
       return result;
     };
 

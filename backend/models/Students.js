@@ -47,6 +47,10 @@ const studentsSchema = new Schema({
     type: String,
     required: [true, "select Directions не должнен быть пустой"],
   },
+  status: {
+    type: String,
+    enum: ["Studies", "Graduated", "Expelled"],
+  },
   avatar: {
     type: String,
     defaultValue: 'null'

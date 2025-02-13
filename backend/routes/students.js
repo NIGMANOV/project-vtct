@@ -34,6 +34,7 @@ router.post("/", authMiddleware, upload.single("avatar"), controller.create);
 router.get("/search", authMiddleware, controller.search);
 router.get("/getAll", authMiddleware, controller.getAll);
 router.get("/export", controller.exportStudents)
+router.put("/:id/status", authMiddleware, controller.updateStatus)
 router.delete("/delete", authMiddleware, controller.deleteStudents);
 
 module.exports = router;
