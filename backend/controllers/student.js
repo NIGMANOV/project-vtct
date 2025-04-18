@@ -222,6 +222,7 @@ class StudentsController {
       { header: 'Passport Seria', key: 'passportSeria', width: 15},
       { header: 'Passport Number', key: 'passportNumber', width: 15},
       { header: 'Select Directions', key: 'selectDirections', width: 45},
+      { header: 'Status', key: 'status', width: 45},
     ];
 
     students.forEach((student, i) => {
@@ -238,6 +239,7 @@ class StudentsController {
         passportSeria: student.passportSeria,
         passportNumber: student.passportNumber,
         selectDirections: student.selectDirections,
+        status: student.status,
       })
     })
 

@@ -6,10 +6,7 @@ class UserController {
   async create(req, res) {
     const saltRounds = Number(process.env.SALT_ROUNDS);
     const { email, fullname, password } = req.body;
-    // const { roles } = req?.user || {};
-    // if (!roles || roles !== "superadmin") {
-    //   return res.status(403).json({ message: "Forbidden resourse" });
-    // }
+    
     try {
       const candidate = await User.findOne({ email: email });
       if (candidate) {
@@ -44,7 +41,7 @@ class UserController {
       if (!candidate) {
         return res.status(400).json({ message: "Почта или пароль не верны" });
       }
-      const checkPass = await bcrypt.compare(password, candidate.password);
+      const checkPass = bcrypt.compare(password, candidate.password);
 
       if (!checkPass) {
         return res.status(400).json({ message: "Почта или пароль не верны" });
